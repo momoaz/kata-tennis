@@ -28,10 +28,6 @@ public class Referee implements Observer {
         playerTwo.registerObserver(this);
     }
 
-    public Player getSetWinner() {
-        return this.setWinner;
-    }
-
     public String displayGameScore() {
         StringBuilder sb = new StringBuilder();
         sb.append(this.playerOneScore.scoreToString(this.isTieBreak));
@@ -140,23 +136,6 @@ public class Referee implements Observer {
             } else if(this.playerTwoScore.getPlayer().equals(player)) {
                 this.increasePlayerTwoGameScore();
             }
-        }
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-        Player p1 = new Player("Player 1");
-        Player p2 = new Player("Player 2");
-
-        Referee referee = new Referee(p1, p2);
-
-        while(referee.getSetWinner() == null) {
-            if(Math.random() * 100 > 50) {
-                p1.winPoint();
-            } else {
-                p2.winPoint();
-            }
-            System.out.println(referee.displayGameScore());
-            System.out.println("");
         }
     }
 }
