@@ -8,10 +8,10 @@ import static org.junit.Assert.assertEquals;
 
 public class RefereeTest {
 
-    Player playerOne = new Player(PLAYER_ONE_NAME);
-    Player playerTwo = new Player(PLAYER_TWO_NAME);
+    private Player playerOne = new Player(PLAYER_ONE_NAME);
+    private Player playerTwo = new Player(PLAYER_TWO_NAME);
 
-    Referee referee = new Referee(playerOne, playerTwo);
+    private Referee referee = new Referee(playerOne, playerTwo);
 
     @Test
     public void should_display_initial_game_scores_to_zero() {

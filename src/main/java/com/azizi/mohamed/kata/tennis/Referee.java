@@ -24,6 +24,9 @@ public class Referee implements Observer {
     public void initGame(Player playerOne, Player playerTwo) {
         this.playerOneScore = new PlayerScore(playerOne);
         this.playerTwoScore = new PlayerScore(playerTwo);
+        this.gameWinner = null;
+        this.setWinner = null;
+        this.isTieBreak = false;
         playerOne.registerObserver(this);
         playerTwo.registerObserver(this);
     }
@@ -36,12 +39,12 @@ public class Referee implements Observer {
 
         if(gameWinner != null) {
             sb.append("\n");
-            sb.append(gameWinner.getName() + " wins the game");
+            sb.append(gameWinner.getName()).append(" wins the game");
         }
 
         if(setWinner != null) {
             sb.append("\n");
-            sb.append(setWinner.getName() + " wins the set");
+            sb.append(setWinner.getName()).append(" wins the set");
         }
 
         return sb.toString();
@@ -112,19 +115,11 @@ public class Referee implements Observer {
     }
 
     private boolean isSetWinner(PlayerScore winner, PlayerScore looser) {
-        if (winner.getSetScore() == 6 && looser.getSetScore() < 5) {
-            return true;
-        } else if (winner.getSetScore() == 7 && looser.getSetScore() <= 5) {
-            return true;
-        }
-        return false;
+        return winner.getSetScore() == 6 && looser.getSetScore() < 5 || winner.getSetScore() == 7 && looser.getSetScore() <= 5;
     }
 
     private boolean isTieBreakWinner(PlayerScore winner, PlayerScore looser) {
-        if (winner.getTieBreakScore() >= 7 && winner.getTieBreakScore() >= looser.getTieBreakScore() + 2) {
-            return true;
-        }
-        return false;
+        return winner.getTieBreakScore() >= 7 && winner.getTieBreakScore() >= looser.getTieBreakScore() + 2;
     }
 
     @Override

@@ -17,10 +17,6 @@ public class PlayerScore {
         return player;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
     public GameScore getGameScore() {
         return gameScore;
     }
@@ -51,11 +47,11 @@ public class PlayerScore {
 
     public String scoreToString(boolean withTieBreak) {
         StringBuilder sb = new StringBuilder();
-        sb.append(this.player.getName() + " : ");
-        sb.append("Game Score " + this.gameScore.getScore());
-        sb.append(" | Set Score " + this.setScore);
+        sb.append(this.player.getName()).append(" : ")
+        .append("Game Score ").append(this.gameScore.getScore())
+        .append(" | Set Score ").append(this.setScore);
         if(withTieBreak) {
-            sb.append(" | Tie Break Score " + this.tieBreakScore);
+            sb.append(" | Tie Break Score ").append(this.tieBreakScore);
         }
         return sb.toString();
     }
